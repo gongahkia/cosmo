@@ -18,7 +18,51 @@ Then press the corresponding [key](#keypress) to generate and visualize [terrain
 
 ## Architecture
 
-![](./asset/reference/architecture.png)
+```mermaid
+sequenceDiagram
+    actor User
+    participant Config as config.yaml
+    participant Generator as Lua Generators
+    participant MapFile as map.txt
+    participant Renderer as main.lua
+    participant Engine as Love2d
+    participant Display as Visual Output
+    User->>Engine: Launch application
+    Engine->>Renderer: Initialize system
+    Renderer->>MapFile: Check for existing map
+    
+    alt New terrain generation
+        User->>Engine: Press key
+        Engine->>Generator: Request terrain type
+        Generator->>Config: Load terrain parameters
+        Config-->>Generator: Return parameters
+        Generator->>Generator: Apply terrain algorithms
+        Generator->>MapFile: Write character grid
+        MapFile-->>Generator: Confirm write complete
+        Generator-->>Engine: Signal map ready
+    end
+    
+    Engine->>Renderer: Request map rendering
+    Renderer->>MapFile: Read character grid
+    MapFile-->>Renderer: Return map data
+    Renderer->>Renderer: Process map data
+    Renderer->>Engine: Send rendering instructions
+    Engine->>Engine: Apply color mappings
+    Engine->>Display: Render terrain visualization
+    Display-->>User: Show terrain
+    
+    loop Interaction
+        User->>Engine: Resize window
+        Engine->>Renderer: Signal resize event
+        Renderer->>Renderer: Recalculate tile size
+        Renderer->>Engine: Update rendering parameters
+        Engine->>Display: Re-render with new dimensions
+        Display-->>User: Show updated view
+    end
+    
+    User->>Engine: Generate new terrain (key press)
+    Note over Generator,MapFile: Process repeats with new terrain type
+```
 
 ## Screenshots
 
