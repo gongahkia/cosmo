@@ -14,6 +14,7 @@ First run the below.
 
 ```console
 $ git clone https://github.com/gongahkia/cosmo
+$ cd cosmo
 $ make
 $ love src
 ```
