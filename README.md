@@ -1,14 +1,25 @@
+[![](https://img.shields.io/badge/cosmo_1.0.0-passing-green)](https://github.com/gongahkia/cosmo/releases/tag/1.0.0) 
+
 # `Cosmo`
 
 ...
 
 ## Usage
 
+First run the below.
+
 ```console
 $ git clone https://github.com/gongahkia/cosmo
 $ make
 $ love src
 ```
+
+Then press the corresponding key to generate and visualize [terrain](#screenshots).
+
+| Key | Description |
+| :--- | :--- |
+| `a` | example key |
+| ... | ... |
 
 ## Architecture
 
