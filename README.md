@@ -1,8 +1,12 @@
 [![](https://img.shields.io/badge/cosmo_1.0.0-passing-green)](https://github.com/gongahkia/cosmo/releases/tag/1.0.0) 
 
-# `Cosmo`
+# `Cosmo` 🌌
 
 ...
+
+Rendered with [Löve2d](https://love2d.org/)'s graphics library.
+
+Implemented in [3 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e).
 
 ## Usage
 
@@ -14,7 +18,7 @@ $ make
 $ love src
 ```
 
-Then press the corresponding [key](#keypress) to generate and visualize [terrain](#screenshots).
+Then press the corresponding [key](#keypress) to [generate](#architecture) and visualize [terrain](#screenshots).
 
 ## Architecture
 
