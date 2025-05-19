@@ -1,3 +1,31 @@
+-- required imports
+
+local noise = require("helper.noise")
+local voronoi = require("helper.voronoi")
+local cells = require("helper.cells")
+local color_utils = require("helper.color")
+local file_utils = require("helper.files")
+
+local generators = {
+    apocalypse = require("generator.apocalypse"),
+    cave = require("generator.cave"),
+    coast = require("generator.coast"),
+    coral = require("generator.coral"),
+    desert = require("generator.desert"),
+    farm = require("generator.farm"),
+    glacier = require("generator.glacier"),
+    island = require("generator.island"),
+    mega = require("generator.mega"),
+    river = require("generator.river"),
+    swamp = require("generator.swamp"),
+    temple = require("generator.temple"),
+    tundra = require("generator.tundra"),
+    urban = require("generator.urban"),
+    volcano = require("generator.volcano")
+}
+
+-- execution code
+
 function love.load()
     terrainColors = {
         ['G'] = {0.4, 0.8, 0.4}, -- grass
@@ -83,4 +111,40 @@ function love.resize(w, h)
         h / #map
     )
     tileSize = math.max(math.floor(tileSize), 4)
+end
+
+function love.keypressed(key)
+    if key == "d" then
+        map = generators.desert.generate(120, 80)
+    elseif key == "v" then
+        map = generators.volcano.generate(120, 80)
+    elseif key == "r" then
+        map = generators.river.generate(120, 80)
+    elseif key == "s" then
+        map = generators.swamp.generate(120, 80)
+    elseif key == "u" then
+        map = generators.urban.generate(120, 80)
+    elseif key == "f" then
+        map = generators.farm.generate(120, 80)
+    elseif key == "g" then
+        map = generators.glacier.generate(120, 80)
+    elseif key == "t" then
+        map = generators.temple.generate(120, 80)
+    elseif key == "n" then
+        map = generators.tundra.generate(120, 80)
+    elseif key == "i" then
+        map = generators.island.generate(120, 80)
+    elseif key == "c" then
+        map = generators.cave.generate(120, 80)
+    elseif key == "a" then
+        map = generators.apocalypse.generate(120, 80)
+    elseif key == "m" then
+        map = generators.mega.generate(120, 80)
+    elseif key == "o" then
+        map = generators.coral.generate(120, 80)
+    end
+    if map then
+        file_utils.save_map(map, "map.txt")
+        love.load()
+    end
 end
