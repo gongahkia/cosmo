@@ -14,12 +14,7 @@ $ make
 $ love src
 ```
 
-Then press the corresponding key to generate and visualize [terrain](#screenshots).
-
-| Key | Description |
-| :--- | :--- |
-| `a` | example key |
-| ... | ... |
+Then press the corresponding [key](#keypress) to generate and visualize [terrain](#screenshots).
 
 ## Architecture
 
@@ -51,7 +46,7 @@ Then press the corresponding key to generate and visualize [terrain](#screenshot
   <img src="./asset/reference/9.png" width="32%">
 </div>
 
-### Forest Temple, Tundra, Coral Reef
+### Forest Temple, Tundra Biome, Coral Reef
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/10.png" width="32%">
@@ -66,6 +61,26 @@ Then press the corresponding key to generate and visualize [terrain](#screenshot
   <img src="./asset/reference/14.png" width="32%">
   <img src="./asset/reference/15.png" width="32%">
 </div>
+
+## Keypress
+
+| Key | Description |
+| :--- | :--- |
+| `b` | [Coastline](#coastline-volcanic-archipelago-desert-dunes) |
+| `v` | [Volcanic Archipelago](#coastline-volcanic-archipelago-desert-dunes) |
+| `d` | [Desert](#coastline-volcanic-archipelago-desert-dunes) |
+| `g` | [Glacial Valley](#glacial-valley-urban-grid-swamp) |
+| `u` | [Urban Cityscape Grid](#glacial-valley-urban-grid-swamp) |
+| `s` | [Swamp Ecosystem](#glacial-valley-urban-grid-swamp) |
+| `c` | [Cave System](#cave-network-river-basin-floating-islands) |
+| `r` | [River Basin Network](#cave-network-river-basin-floating-islands) |
+| `i` | [Floating Islands](#cave-network-river-basin-floating-islands) |
+| `t` | [Ancient Forest Temple](#forest-temple-tundra-coral-reef) |
+| `n` | [Tundra Biome](#forest-temple-tundra-coral-reef) |
+| `o` | [Coral Reefs](#forest-temple-tundra-coral-reef) |
+| `m` | [Megastructure](#megastructure-farmland-apocalyptic-wasteland) |
+| `f` | [Agricultural Farmland](#megastructure-farmland-apocalyptic-wasteland) |
+| `a` | [Apocalyptic Wasteland](#megastructure-farmland-apocalyptic-wasteland) |
 
 ## Reference
 
