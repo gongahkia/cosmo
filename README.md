@@ -2,11 +2,11 @@
 
 # `Cosmo` 🌌
 
-...
+2D *(top-down)* Terrain Generation, with an emphasis on [investigated and empirically-backed](#research) landscape [evolution](https://en.wikipedia.org/wiki/Evolutionary_landscape).
 
 Rendered with [Löve2d](https://love2d.org/)'s graphics library.
 
-Implemented in [4 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e), with an emphasis on [investigated, empirically-backed](#research) terrain [evolution](https://en.wikipedia.org/wiki/Evolutionary_landscape).
+Implemented in [4 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e).
 
 ## Usage
 
@@ -147,3 +147,7 @@ The name `Cosmo` is in reference to [Cosmo](https://chainsaw-man.fandom.com/wiki
 * [*Modeling Hydrologic and Vegetation Responses in Freshwater Wetlands*](https://www.researchgate.net/publication/234423920_Modeling_Hydrologic_and_Vegetation_Responses_in_Freshwater_Wetlands) by Ting Fong May Chui, Swee Yang Low and Shie-Yui Liong
 * [*Evaluation of Grid Pattern City in Tropical Zone Considering Urban Morphology Viewing from Shading Aspect*](https://www.researchgate.net/publication/349363260_Evaluation_of_Grid_Pattern_City_in_Tropical_Zone_Considering_Urban_Morphology_Viewing_from_Shading_Aspect) by K M Mo 0f and Nobuo Mishima
 * [*Terrain Generation Using Procedural Models Based on Hydrology*](https://www.researchgate.net/publication/248703095_Terrain_Generation_Using_Procedural_Models_Based_on_Hydrology) by Jean-David Génevaux, Eric Galin, Eric Guérin and Adrien Peytavie
+
+## Other notes
+
+`Cosmo` was heavily inspired by tools like [World Machine](https://www.world-machine.com/) and [World Creator](https://www.world-creator.com/).
