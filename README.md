@@ -7,6 +7,7 @@
 ```console
 $ git clone https://github.com/gongahkia/cosmo
 $ make
+$ love src
 ```
 
 ## Architecture
