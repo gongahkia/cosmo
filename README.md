@@ -6,7 +6,7 @@
 
 Rendered with [Löve2d](https://love2d.org/)'s graphics library.
 
-Implemented in [3 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e).
+Implemented in [4 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e), with an emphasis on [investigated, empirically-backed](#research) terrain [evolution](https://en.wikipedia.org/wiki/Evolutionary_landscape).
 
 ## Usage
 
