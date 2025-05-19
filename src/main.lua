@@ -4,9 +4,30 @@ function love.load()
         ['W'] = {0.3, 0.3, 1.0}, -- water
         ['R'] = {0.5, 0.5, 0.5}, -- rock
         ['S'] = {0.9, 0.8, 0.6}, -- sand
-        ['D'] = {0.2, 0.1, 0.0}  -- dirt
-        -- FUA
-        -- to add more terrain types here
+        ['D'] = {0.2, 0.1, 0.0}, -- dirt
+        ['F'] = {0.1, 0.5, 0.1}, -- forest 
+        ['T'] = {0.6, 0.4, 0.2}, -- tree trunks 
+        ['M'] = {0.8, 0.8, 0.8}, -- mountain snow 
+        ['L'] = {0.2, 0.4, 0.8}, -- lake 
+        ['B'] = {0.0, 0.0, 0.2}, -- deep water 
+        ['P'] = {0.7, 0.4, 0.7}, -- corrupted land 
+        ['C'] = {0.7, 0.7, 0.2}, -- farmland
+        ['A'] = {1.0, 1.0, 1.0}, -- snow
+        ['H'] = {0.5, 0.7, 0.3}, -- heath
+        ['V'] = {0.1, 0.7, 0.5}, -- swamp
+        ['O'] = {0.9, 0.6, 0.2}, -- orange sand 
+        ['E'] = {0.4, 0.2, 0.6}, -- dark forest
+        ['U'] = {0.3, 0.2, 0.1}, -- underground
+        ['Y'] = {0.9, 0.9, 0.4}, -- dry grass
+        ['Q'] = {0.5, 0.0, 0.0}, -- lava 
+        ['N'] = {0.6, 0.6, 0.9}, -- tundra 
+        ['Z'] = {0.3, 0.7, 0.9}, -- glacier
+        ['X'] = {0.7, 0.7, 0.7}, -- gravel
+        ['J'] = {0.2, 0.2, 0.2}, -- asphalt
+        ['K'] = {0.8, 0.5, 0.2}, -- clay 
+        ['I'] = {0.7, 0.9, 1.0}, -- shallow ice 
+        ['U'] = {0.3, 0.2, 0.1}, -- cave 
+        ['-'] = {0.0, 0.0, 0.0, 0.0}, -- empty
     }
     map = {}
     local success, message = pcall(function()
