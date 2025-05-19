@@ -1,11 +1,12 @@
 # `Cosmo`
 
+...
+
 ## Usage
 
 ```console
-$ git clone 
-$ cd src
-$ love
+$ git clone https://github.com/gongahkia/cosmo
+$ make
 ```
 
 ## Architecture
