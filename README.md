@@ -16,13 +16,15 @@ $ love src
 
 ## Screenshots
 
+### Coastline, Volcanic Archipelago, Desert Dunes
+
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/1.png" width="32%">
   <img src="./asset/reference/2.png" width="32%">
   <img src="./asset/reference/3.png" width="32%">
 </div>
 
-<br>
+### Glacial Valley, Urban Grid, Swamp
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/4.png" width="32%">
@@ -30,7 +32,7 @@ $ love src
   <img src="./asset/reference/6.png" width="32%">
 </div>
 
-<br>
+### Cave Network, River Basin, Floating Islands
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/7.png" width="32%">
@@ -38,7 +40,7 @@ $ love src
   <img src="./asset/reference/9.png" width="32%">
 </div>
 
-<br>
+### Forest Temple, Tundra, Coral Reef
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/10.png" width="32%">
@@ -46,7 +48,7 @@ $ love src
   <img src="./asset/reference/12.png" width="32%">
 </div>
 
-<br>
+### Megastructure, Farmland, Apocalyptic Wasteland
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./asset/reference/13.png" width="32%">
