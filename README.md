@@ -138,8 +138,12 @@ The name `Cosmo` is in reference to [Cosmo](https://chainsaw-man.fandom.com/wiki
 
 ## Research
 
-* 
-* 
-* 
-* 
-* 
+* [*Neotectonics on the Arabian Sea coasts*](https://www.researchgate.net/publication/249551040_Neotectonics_on_the_Arabian_Sea_coasts) by Claudio Vita-Finzi
+* [*A model for Aeolian-driven land surface processes with consideration of porous sand fences.*](https://ui.adsabs.harvard.edu/abs/2022AGUFMEP25D1428R/abstract) by Ribeiro Parteli and Eric Josef
+* [*Controlled Procedural Terrain Generation Using Software Agents*](https://www.researchgate.net/publication/224133576_Controlled_Procedural_Terrain_Generation_Using_Software_Agents) by Jonathon Doran and Ian Parberry
+* [*Simulating Social and Economic Specialization in Small-Scale Agricultural Societies*](https://www.researchgate.net/publication/257932682_Simulating_Social_and_Economic_Specialization_in_Small-Scale_Agricultural_Societies) by Denton Cockburn, Stefani A Crabtree, Ziad Kobti and Tim Kohler
+* [*The Ecological and Environmental Significance of Urban Wastelands and Drosscapes*](https://www.researchgate.net/publication/299781286_The_Ecological_and_Environmental_Significance_of_Urban_Wastelands_and_Drosscapes) by Colin Michael Hall
+* [*The algorithmic beauty of plant roots – an L-System model for dynamic root growth simulation*](https://www.researchgate.net/publication/225093378_The_algorithmic_beauty_of_plant_roots_-_an_L-System_model_for_dynamic_root_growth_simulation) by Daniel Leitner, Sabine Klepsch, Astrid Knieß and Andrea Schnepf
+* [*Modeling Hydrologic and Vegetation Responses in Freshwater Wetlands*](https://www.researchgate.net/publication/234423920_Modeling_Hydrologic_and_Vegetation_Responses_in_Freshwater_Wetlands) by Ting Fong May Chui, Swee Yang Low and Shie-Yui Liong
+* [*Evaluation of Grid Pattern City in Tropical Zone Considering Urban Morphology Viewing from Shading Aspect*](https://www.researchgate.net/publication/349363260_Evaluation_of_Grid_Pattern_City_in_Tropical_Zone_Considering_Urban_Morphology_Viewing_from_Shading_Aspect) by K M Mo 0f and Nobuo Mishima
+* [*Terrain Generation Using Procedural Models Based on Hydrology*](https://www.researchgate.net/publication/248703095_Terrain_Generation_Using_Procedural_Models_Based_on_Hydrology) by Jean-David Génevaux, Eric Galin, Eric Guérin and Adrien Peytavie
