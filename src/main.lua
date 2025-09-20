@@ -8,14 +8,19 @@ local file_utils = require("helper.files")
 
 local generators = {
     apocalypse = require("generator.apocalypse"),
+    archipelago = require("generator.archipelago"),
+    badlands = require("generator.badlands"),
+    canyon = require("generator.canyon"),
     cave = require("generator.cave"),
     coast = require("generator.coast"),
     coral = require("generator.coral"),
     desert = require("generator.desert"),
     farm = require("generator.farm"),
+    forest = require("generator.forest"),
     glacier = require("generator.glacier"),
     island = require("generator.island"),
     mega = require("generator.mega"),
+    mountain = require("generator.mountain"),
     river = require("generator.river"),
     swamp = require("generator.swamp"),
     temple = require("generator.temple"),
@@ -142,6 +147,18 @@ function love.keypressed(key)
         map = generators.mega.generate(120, 80)
     elseif key == "o" then
         map = generators.coral.generate(120, 80)
+    elseif key == "b" then
+        map = generators.coast.generate(120, 80)
+    elseif key == "p" then
+        map = generators.mountain.generate(120, 80)
+    elseif key == "e" then
+        map = generators.forest.generate(120, 80)
+    elseif key == "y" then
+        map = generators.canyon.generate(120, 80)
+    elseif key == "h" then
+        map = generators.archipelago.generate(120, 80)
+    elseif key == "l" then
+        map = generators.badlands.generate(120, 80)
     end
     if map then
         file_utils.save_map(map, "map.txt")

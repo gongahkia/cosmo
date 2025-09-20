@@ -130,6 +130,66 @@ sequenceDiagram
 | `m` | [Megastructure](#megastructure-farmland-apocalyptic-wasteland) |
 | `f` | [Agricultural Farmland](#megastructure-farmland-apocalyptic-wasteland) |
 | `a` | [Apocalyptic Wasteland](#megastructure-farmland-apocalyptic-wasteland) |
+| `p` | [Mountain Range](#additional-terrain-types) |
+| `e` | [Dense Forest](#additional-terrain-types) |
+| `y` | [Canyon System](#additional-terrain-types) |
+| `h` | [Archipelago](#additional-terrain-types) |
+| `l` | [Badlands](#additional-terrain-types) |
+
+## Additional Terrain Types
+
+Five new terrain generators have been added to expand the variety of landscapes:
+
+### Mountain Range (`p`)
+- **Features**: Snow-capped peaks, rocky slopes, forested foothills
+- **Algorithm**: Multi-peak generation with elevation gradients and ridge formation
+- **Terrain Types**: Snow (A), Mountain (M), Rock (R), Forest (F), Grass (G)
+
+### Dense Forest (`e`)
+- **Features**: Thick woodland with clearings, flowing rivers, varied tree density
+- **Algorithm**: Density-based forest distribution with clearing generation and river systems
+- **Terrain Types**: Dark Forest (E), Forest (F), Trees (T), Grass (G), Water (W), Sand (S)
+
+### Canyon System (`y`)
+- **Features**: Deep canyon channels, tributary networks, steep walls
+- **Algorithm**: Erosion simulation with main channel and tributary carving
+- **Terrain Types**: Water (W), Sand (S), Rock (R), Mountain (M), Orange Sand (O), Dirt (D)
+
+### Archipelago (`h`)
+- **Features**: Multiple islands, atolls, shallow waters, varied island sizes
+- **Algorithm**: Multi-island generation with distance-based elevation and atoll formation
+- **Terrain Types**: Deep Water (B), Shallow Water (W), Beach (O/S), Forest (F), Rock (R), Mountain (M)
+
+### Badlands (`l`)
+- **Features**: Mesa formations, stratified rock layers, arroyos, arid terrain
+- **Algorithm**: Mesa placement with stratification effects and erosion channels
+- **Terrain Types**: Rock (R), Clay (K), Orange Sand (O), Gravel (X), Dirt (D), Sand (S), Water (W)
+
+## Testing
+
+A comprehensive test suite has been implemented to ensure terrain generator quality and consistency:
+
+### Running Tests
+
+```console
+$ lua test/run_tests.lua
+```
+
+### Test Framework Features
+
+- **Generator Validation**: Ensures all generators produce valid terrain maps with correct dimensions
+- **Character Validation**: Verifies only valid terrain characters are used
+- **Terrain Diversity**: Tests that generators produce varied and interesting landscapes
+- **Connectivity Analysis**: Analyzes terrain feature connectivity and distribution
+- **Cross-Generator Consistency**: Ensures all generators follow the same interface standards
+
+### Test Structure
+
+- `test/test_framework.lua` - Core testing framework with assertions
+- `test/test_helpers.lua` - Utility functions for terrain analysis
+- `test/test_generators.lua` - Comprehensive generator tests
+- `test/test_helpers_test.lua` - Tests for the testing utilities
+- `test/run_tests.lua` - Test runner script
 
 ## Reference
 
