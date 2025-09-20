@@ -130,6 +130,35 @@ sequenceDiagram
 | `m` | [Megastructure](#megastructure-farmland-apocalyptic-wasteland) |
 | `f` | [Agricultural Farmland](#megastructure-farmland-apocalyptic-wasteland) |
 | `a` | [Apocalyptic Wasteland](#megastructure-farmland-apocalyptic-wasteland) |
+| `p` | [Mountain Range](#additional-terrain-types) |
+| `e` | [Dense Forest](#additional-terrain-types) |
+| `y` | [Canyon System](#additional-terrain-types) |
+| `h` | [Archipelago](#additional-terrain-types) |
+| `l` | [Badlands](#additional-terrain-types) |
+
+## Testing
+
+### Running Tests
+
+```console
+$ lua test/run_tests.lua
+```
+
+### Test Framework Features
+
+- **Generator Validation**: Ensures all generators produce valid terrain maps with correct dimensions
+- **Character Validation**: Verifies only valid terrain characters are used
+- **Terrain Diversity**: Tests that generators produce varied and interesting landscapes
+- **Connectivity Analysis**: Analyzes terrain feature connectivity and distribution
+- **Cross-Generator Consistency**: Ensures all generators follow the same interface standards
+
+### Test Structure
+
+- `test/test_framework.lua` - Core testing framework with assertions
+- `test/test_helpers.lua` - Utility functions for terrain analysis
+- `test/test_generators.lua` - Comprehensive generator tests
+- `test/test_helpers_test.lua` - Tests for the testing utilities
+- `test/run_tests.lua` - Test runner script
 
 ## Reference
 
