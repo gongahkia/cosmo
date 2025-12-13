@@ -1,1 +1,2 @@
-diagrams
+# Cosmo is a Lua/Love2D project and does not require Python dependencies
+# For Lua development dependencies, see README.md

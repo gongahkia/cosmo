@@ -31,6 +31,23 @@ local generators = {
 
 -- execution code
 
+-- Global state
+currentSeed = nil
+currentGenerator = nil
+exportMessage = nil
+exportMessageTimer = 0
+currentWidth = 120
+currentHeight = 80
+
+-- Dimension presets
+dimensionPresets = {
+    {name = "Small", width = 60, height = 40},
+    {name = "Medium", width = 120, height = 80},
+    {name = "Large", width = 200, height = 150},
+    {name = "Huge", width = 300, height = 200}
+}
+currentPreset = 2  -- Medium by default
+
 function love.load()
     terrainColors = {
         ['G'] = {0.4, 0.8, 0.4}, -- grass
@@ -107,6 +124,33 @@ function love.draw()
             )
         end
     end
+
+    -- Display seed and generator info
+    if currentSeed and currentGenerator then
+        love.graphics.setColor(1, 1, 1, 0.9)
+        love.graphics.rectangle("fill", 10, 10, 350, 70)
+        love.graphics.setColor(0, 0, 0, 1)
+        love.graphics.print("Generator: " .. currentGenerator, 20, 20)
+        love.graphics.print("Seed: " .. currentSeed, 20, 35)
+        love.graphics.print("Size: " .. dimensionPresets[currentPreset].name .. " (" .. currentWidth .. "x" .. currentHeight .. ")", 20, 50)
+    end
+
+    -- Display export message
+    if exportMessage and exportMessageTimer > 0 then
+        love.graphics.setColor(0.2, 0.8, 0.2, 0.9)
+        love.graphics.rectangle("fill", 10, 90, 400, 30)
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.print(exportMessage, 20, 98)
+    end
+end
+
+function love.update(dt)
+    if exportMessageTimer > 0 then
+        exportMessageTimer = exportMessageTimer - dt
+        if exportMessageTimer <= 0 then
+            exportMessage = nil
+        end
+    end
 end
 
 function love.resize(w, h)
@@ -117,50 +161,103 @@ function love.resize(w, h)
     tileSize = math.max(math.floor(tileSize), 4)
 end
 
+function generateTerrain(generatorName, width, height, seed)
+    seed = seed or os.time()
+    love.math.setRandomSeed(seed)
+    math.randomseed(seed)
+
+    currentSeed = seed
+    currentGenerator = generatorName
+
+    map = generators[generatorName].generate(width, height)
+    file_utils.write_map(map, "map.txt")
+    love.load()
+end
+
 function love.keypressed(key)
-    if key == "d" then
-        map = generators.desert.generate(120, 80)
+    -- Dimension preset keys
+    if key == "1" then
+        currentPreset = 1
+        currentWidth = dimensionPresets[1].width
+        currentHeight = dimensionPresets[1].height
+        exportMessage = "Size: " .. dimensionPresets[1].name
+        exportMessageTimer = 2
+    elseif key == "2" then
+        currentPreset = 2
+        currentWidth = dimensionPresets[2].width
+        currentHeight = dimensionPresets[2].height
+        exportMessage = "Size: " .. dimensionPresets[2].name
+        exportMessageTimer = 2
+    elseif key == "3" then
+        currentPreset = 3
+        currentWidth = dimensionPresets[3].width
+        currentHeight = dimensionPresets[3].height
+        exportMessage = "Size: " .. dimensionPresets[3].name
+        exportMessageTimer = 2
+    elseif key == "4" then
+        currentPreset = 4
+        currentWidth = dimensionPresets[4].width
+        currentHeight = dimensionPresets[4].height
+        exportMessage = "Size: " .. dimensionPresets[4].name
+        exportMessageTimer = 2
+
+    -- Terrain generation keys
+    elseif key == "d" then
+        generateTerrain("desert", currentWidth, currentHeight)
     elseif key == "v" then
-        map = generators.volcano.generate(120, 80)
+        generateTerrain("volcano", currentWidth, currentHeight)
     elseif key == "r" then
-        map = generators.river.generate(120, 80)
+        generateTerrain("river", currentWidth, currentHeight)
     elseif key == "s" then
-        map = generators.swamp.generate(120, 80)
+        generateTerrain("swamp", currentWidth, currentHeight)
     elseif key == "u" then
-        map = generators.urban.generate(120, 80)
+        generateTerrain("urban", currentWidth, currentHeight)
     elseif key == "f" then
-        map = generators.farm.generate(120, 80)
+        generateTerrain("farm", currentWidth, currentHeight)
     elseif key == "g" then
-        map = generators.glacier.generate(120, 80)
+        generateTerrain("glacier", currentWidth, currentHeight)
     elseif key == "t" then
-        map = generators.temple.generate(120, 80)
+        generateTerrain("temple", currentWidth, currentHeight)
     elseif key == "n" then
-        map = generators.tundra.generate(120, 80)
+        generateTerrain("tundra", currentWidth, currentHeight)
     elseif key == "i" then
-        map = generators.island.generate(120, 80)
+        generateTerrain("island", currentWidth, currentHeight)
     elseif key == "c" then
-        map = generators.cave.generate(120, 80)
+        generateTerrain("cave", currentWidth, currentHeight)
     elseif key == "a" then
-        map = generators.apocalypse.generate(120, 80)
+        generateTerrain("apocalypse", currentWidth, currentHeight)
     elseif key == "m" then
-        map = generators.mega.generate(120, 80)
+        generateTerrain("mega", currentWidth, currentHeight)
     elseif key == "o" then
-        map = generators.coral.generate(120, 80)
+        generateTerrain("coral", currentWidth, currentHeight)
     elseif key == "b" then
-        map = generators.coast.generate(120, 80)
+        generateTerrain("coast", currentWidth, currentHeight)
     elseif key == "p" then
-        map = generators.mountain.generate(120, 80)
+        generateTerrain("mountain", currentWidth, currentHeight)
     elseif key == "e" then
-        map = generators.forest.generate(120, 80)
+        generateTerrain("forest", currentWidth, currentHeight)
     elseif key == "y" then
-        map = generators.canyon.generate(120, 80)
+        generateTerrain("canyon", currentWidth, currentHeight)
     elseif key == "h" then
-        map = generators.archipelago.generate(120, 80)
+        generateTerrain("archipelago", currentWidth, currentHeight)
     elseif key == "l" then
-        map = generators.badlands.generate(120, 80)
-    end
-    if map then
-        file_utils.save_map(map, "map.txt")
-        love.load()
+        generateTerrain("badlands", currentWidth, currentHeight)
+
+    -- Export keys
+    elseif key == "j" and map and currentSeed then
+        local metadata = {
+            generator = currentGenerator,
+            seed = currentSeed,
+            timestamp = os.date("%Y-%m-%d %H:%M:%S")
+        }
+        local filename = currentGenerator .. "_" .. currentSeed .. ".json"
+        file_utils.export_to_json(map, metadata, filename)
+        exportMessage = "Exported to " .. filename
+        exportMessageTimer = 3
+    elseif key == "w" and map then
+        local filename = (currentGenerator or "terrain") .. "_" .. (currentSeed or "unknown") .. ".csv"
+        file_utils.export_to_csv(map, filename)
+        exportMessage = "Exported to " .. filename
+        exportMessageTimer = 3
     end
 end
