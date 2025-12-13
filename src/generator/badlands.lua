@@ -2,7 +2,12 @@ local noise = require("helper.noise")
 
 local badlands = {}
 
-function badlands.generate(width, height)
+function badlands.generate(width, height, params)
+    params = params or {}
+    local mesa_count = params.mesa_count or math.random(4, 8)
+    local erosion_intensity = params.erosion_intensity or 0.3
+    local stratification = params.stratification or 0.05
+
     local terrain = {}
 
     math.randomseed(os.time() * math.random(1, 9999))
@@ -11,7 +16,6 @@ function badlands.generate(width, height)
         terrain[y] = {}
     end
 
-    local mesa_count = math.random(4, 8)
     local mesas = {}
 
     for i = 1, mesa_count do
@@ -28,10 +32,10 @@ function badlands.generate(width, height)
         for x = 1, width do
             local base_elevation = noise.octave_noise(x/50, y/50, 2, 0.4) * 0.3 + 0.2
 
-            local stratification = math.sin(base_elevation * 20) * 0.05
-            base_elevation = base_elevation + stratification
+            local strat_pattern = math.sin(base_elevation * 20) * stratification
+            base_elevation = base_elevation + strat_pattern
 
-            local erosion_noise = noise.octave_noise(x/15, y/15, 4, 0.6) * 0.3
+            local erosion_noise = noise.octave_noise(x/15, y/15, 4, 0.6) * erosion_intensity
             base_elevation = base_elevation + erosion_noise
 
             for _, mesa in ipairs(mesas) do

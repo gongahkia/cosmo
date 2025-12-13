@@ -1,10 +1,18 @@
-function generate_volcanic_archipelago(width, height)
-    local base_scale = 50
-    local magma_channels = 4
-    local lava_flow = 0.1
+-- Volcanic archipelago generator with caldera formation
+-- Research: Volcanic terrain and magma flow dynamics
+
+local volcano = {}
+
+function volcano.generate(width, height, params)
+    params = params or {}
+    local base_scale = params.base_scale or 50
+    local magma_channels = params.magma_channels or 4
+    local lava_flow = params.lava_flow or 0.1
+
     local elevation = {}
     local heat = {}
     local moisture = {}
+
     for octave = 0, magma_channels - 1 do
         local frequency = 2 ^ octave
         local amplitude = 0.5 ^ octave
@@ -21,8 +29,10 @@ function generate_volcanic_archipelago(width, height)
             end
         end
     end
+
     local center_x, center_y = width/2, height/2
     local max_radius = math.min(center_x, center_y) * 0.9
+
     for y = 1, height do
         for x = 1, width do
             local dx = x - center_x
@@ -33,6 +43,7 @@ function generate_volcanic_archipelago(width, height)
             heat[y][x] = heat[y][x] * falloff
         end
     end
+
     local caldera_radius = max_radius * 0.3
     for y = 1, height do
         for x = 1, width do
@@ -46,35 +57,36 @@ function generate_volcanic_archipelago(width, height)
             end
         end
     end
+
     local map = {}
     for y = 1, height do
-        map[y] = ""
+        map[y] = {}
         for x = 1, width do
             local e = elevation[y][x]
             local h = heat[y][x]
             local m = moisture[y][x]
             local char = '-'
+
             if e < 0.1 then
-                char = 'B' 
+                char = 'B'
             elseif e < 0.2 then
-                char = 'L' 
+                char = 'L'
             elseif e < 0.3 then
-                char = 'S' 
+                char = 'S'
             elseif e < 0.5 then
                 if m > 0.6 then char = 'V'
-                else char = 'G' end 
+                else char = 'G' end
             elseif e < 0.7 then
-                char = 'R' 
+                char = 'R'
             else
-                if h > 0.6 then char = 'Q' 
-                else char = 'M' end 
+                if h > 0.6 then char = 'Q'
+                else char = 'M' end
             end
-            map[y] = map[y] .. char
+            map[y][x] = char
         end
     end
-    local success, message = pcall(function()
-        local content = table.concat(map, "\n")
-        love.filesystem.write("map.txt", content)
-    end)
-    return success, message
+
+    return map
 end
+
+return volcano

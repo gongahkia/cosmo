@@ -1,10 +1,17 @@
-function generate_farmland(width, height, params)
+-- Farmland generator using genetic algorithm for field optimization
+-- Research: Genetic algorithms for spatial optimization
+
+local farm = {}
+
+function farm.generate(width, height, params)
     params = params or {}
     local soil_quality = params.soil_quality or 0.7
     local water_access = params.water_access or 0.4
     local crop_types = params.crop_types or 3
+
     local voronoi_seeds = {}
     local num_fields = math.floor(width * height / 100)
+
     for _ = 1, num_fields do
         table.insert(voronoi_seeds, {
             x = love.math.random(width),
@@ -13,9 +20,11 @@ function generate_farmland(width, height, params)
             fitness = 0
         })
     end
+
     local generations = 50
     local population_size = 10
     local mutation_rate = 0.1
+
     local function calculate_fitness(seeds)
         local total = 0
         for _, seed in ipairs(seeds) do
@@ -25,6 +34,7 @@ function generate_farmland(width, height, params)
         end
         return total
     end
+
     for _ = 1, generations do
         local population = {}
         for i = 1, population_size do
@@ -44,6 +54,7 @@ function generate_farmland(width, height, params)
         table.sort(population, function(a,b) return a.fitness > b.fitness end)
         voronoi_seeds = population[1]
     end
+
     local map = {}
     for y = 1, height do
         map[y] = {}
@@ -60,6 +71,7 @@ function generate_farmland(width, height, params)
             map[y][x] = closest.crop == 1 and 'C' or closest.crop == 2 and 'H' or 'Y'
         end
     end
+
     local water_map = {}
     for y = 1, height do
         water_map[y] = {}
@@ -67,6 +79,7 @@ function generate_farmland(width, height, params)
             water_map[y][x] = love.math.noise(x/30, y/30) * water_access
         end
     end
+
     for y = 2, height-1 do
         for x = 2, width-1 do
             if water_map[y][x] > 0.6 then
@@ -81,12 +94,8 @@ function generate_farmland(width, height, params)
             end
         end
     end
-    local lines = {}
-    for y = 1, height do
-        lines[y] = table.concat(map[y])
-    end
-    local success, message = pcall(function()
-        love.filesystem.write("map.txt", table.concat(lines, "\n"))
-    end)
-    return success, message
+
+    return map
 end
+
+return farm

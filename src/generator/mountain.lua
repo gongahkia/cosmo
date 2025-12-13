@@ -2,7 +2,12 @@ local noise = require("helper.noise")
 
 local mountain = {}
 
-function mountain.generate(width, height)
+function mountain.generate(width, height, params)
+    params = params or {}
+    local peak_count = params.peak_count or math.random(3, 7)
+    local peak_height = params.peak_height or 1.0
+    local ridge_intensity = params.ridge_intensity or 0.4
+
     local terrain = {}
 
     math.randomseed(os.time() * math.random(1, 9999))
@@ -11,14 +16,13 @@ function mountain.generate(width, height)
         terrain[y] = {}
     end
 
-    local peak_count = math.random(3, 7)
     local peaks = {}
 
     for i = 1, peak_count do
         peaks[i] = {
             x = math.random(width * 0.2, width * 0.8),
             y = math.random(height * 0.2, height * 0.8),
-            height = math.random(0.6, 1.0),
+            height = math.random(0.6, peak_height),
             radius = math.random(15, 35)
         }
     end
@@ -38,7 +42,7 @@ function mountain.generate(width, height)
 
             elevation = elevation + base_noise
 
-            local ridge_noise = math.abs(noise.octave_noise(x/20, y/20, 3, 0.6)) * 0.4
+            local ridge_noise = math.abs(noise.octave_noise(x/20, y/20, 3, 0.6)) * ridge_intensity
             elevation = elevation + ridge_noise
 
             if elevation > 0.8 then

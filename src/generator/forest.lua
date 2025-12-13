@@ -3,7 +3,13 @@ local cells = require("helper.cells")
 
 local forest = {}
 
-function forest.generate(width, height)
+function forest.generate(width, height, params)
+    params = params or {}
+    local num_clearings = params.num_clearings or math.random(2, 5)
+    local tree_density = params.tree_density or 0.6
+    local river_enabled = params.river_enabled or true
+    local river_width = params.river_width or 3
+
     local terrain = {}
 
     math.randomseed(os.time() + math.random(1000))
@@ -16,14 +22,14 @@ function forest.generate(width, height)
     for y = 1, height do
         density_map[y] = {}
         for x = 1, width do
-            local base_density = noise.octave_noise(x/25, y/25, 3, 0.6)
+            local base_density = noise.octave_noise(x/25, y/25, 3, tree_density)
             local detail = noise.octave_noise(x/8, y/8, 2, 0.4) * 0.3
             density_map[y][x] = base_density + detail
         end
     end
 
     local clearings = {}
-    for i = 1, math.random(2, 5) do
+    for i = 1, num_clearings do
         clearings[i] = {
             x = math.random(1, width),
             y = math.random(1, height),
@@ -32,11 +38,10 @@ function forest.generate(width, height)
     end
 
     local river_y = math.random(height * 0.3, height * 0.7)
-    local river_width = 3
 
     for y = 1, height do
         for x = 1, width do
-            local is_river = math.abs(y - river_y) <= river_width and
+            local is_river = river_enabled and math.abs(y - river_y) <= river_width and
                            math.abs(y - river_y - math.sin(x/10) * 2) <= river_width
 
             if is_river then

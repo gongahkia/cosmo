@@ -135,6 +135,20 @@ function TestHelpers.mock_love_math()
         local seed = math.floor(x * 12.9898 + y * 78.233) * 43758.5453
         return (math.sin(seed) + 1) / 2
     end
+
+    love.math.random = function(a, b)
+        if a and b then
+            return math.random(a, b)
+        elseif a then
+            return math.random(a)
+        else
+            return math.random()
+        end
+    end
+
+    love.math.randomseed = function(seed)
+        return math.randomseed(seed)
+    end
 end
 
 return TestHelpers

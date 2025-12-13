@@ -2,7 +2,12 @@ local noise = require("helper.noise")
 
 local canyon = {}
 
-function canyon.generate(width, height)
+function canyon.generate(width, height, params)
+    params = params or {}
+    local num_tributaries = params.num_tributaries or math.random(2, 4)
+    local erosion_depth = params.erosion_depth or 0.8
+    local meander_intensity = params.meander_intensity or 5
+
     local terrain = {}
 
     for y = 1, height do
@@ -11,7 +16,7 @@ function canyon.generate(width, height)
 
     local main_channel_y = height / 2
     local tributaries = {}
-    for i = 1, math.random(2, 4) do
+    for i = 1, num_tributaries do
         tributaries[i] = {
             start_x = math.random(1, width),
             start_y = math.random(1, height),
@@ -28,9 +33,9 @@ function canyon.generate(width, height)
             local distance_to_center = math.abs(y - main_channel_y) / (height/2)
             local channel_depth = math.max(0, 1 - distance_to_center * 2) * 0.7
 
-            local channel_curve = math.sin(x/15) * 5
+            local channel_curve = math.sin(x/15) * meander_intensity
             local curved_distance = math.abs(y - (main_channel_y + channel_curve))
-            local main_erosion = math.max(0, 1 - curved_distance / 20) * 0.8
+            local main_erosion = math.max(0, 1 - curved_distance / 20) * erosion_depth
 
             elevation_map[y][x] = base_elevation - main_erosion
 

@@ -2,7 +2,12 @@ local noise = require("helper.noise")
 
 local archipelago = {}
 
-function archipelago.generate(width, height)
+function archipelago.generate(width, height, params)
+    params = params or {}
+    local num_islands = params.num_islands or math.random(5, 12)
+    local min_island_size = params.min_island_size or 8
+    local max_island_size = params.max_island_size or 25
+
     local terrain = {}
 
     for y = 1, height do
@@ -13,13 +18,12 @@ function archipelago.generate(width, height)
     end
 
     local islands = {}
-    local num_islands = math.random(5, 12)
 
     for i = 1, num_islands do
         islands[i] = {
             x = math.random(width * 0.1, width * 0.9),
             y = math.random(height * 0.1, height * 0.9),
-            size = math.random(8, 25),
+            size = math.random(min_island_size, max_island_size),
             height_scale = math.random(0.4, 0.8)
         }
     end

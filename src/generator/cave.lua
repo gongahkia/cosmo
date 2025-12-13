@@ -1,8 +1,16 @@
-function generate_cave_network(width, height, params)
+-- Cave network generator using cellular automata
+-- Research: Cellular automata for cave generation and flood-fill connectivity
+
+local math_utils = require("helper.math")
+
+local cave = {}
+
+function cave.generate(width, height, params)
     params = params or {}
     local initial_density = params.initial_density or 0.4
     local erosion_passes = params.erosion_passes or 5
     local mineral_veins = params.mineral_veins or 5
+
     local grid = {}
     for y = 1, height do
         grid[y] = {}
@@ -10,17 +18,19 @@ function generate_cave_network(width, height, params)
             grid[y][x] = love.math.random() < initial_density and 'U' or '-'
         end
     end
+
     local function count_neighbors(x, y)
         local count = 0
         for dy = -1, 1 do
             for dx = -1, 1 do
-                local nx = math.clamp(x + dx, 1, width)
-                local ny = math.clamp(y + dy, 1, height)
+                local nx = math_utils.clamp(x + dx, 1, width)
+                local ny = math_utils.clamp(y + dy, 1, height)
                 if grid[ny][nx] == 'U' then count = count + 1 end
             end
         end
         return count
     end
+
     for _ = 1, erosion_passes do
         local new_grid = {}
         for y = 1, height do
@@ -32,6 +42,7 @@ function generate_cave_network(width, height, params)
         end
         grid = new_grid
     end
+
     local function find_caverns()
         local caverns = {}
         local visited = {}
@@ -63,8 +74,10 @@ function generate_cave_network(width, height, params)
         end
         return caverns
     end
+
     local caverns = find_caverns()
     table.sort(caverns, function(a,b) return #a > #b end)
+
     for i = 1, #caverns-1 do
         local start = caverns[i][love.math.random(#caverns[i])]
         local target = caverns[i+1][love.math.random(#caverns[i+1])]
@@ -75,6 +88,7 @@ function generate_cave_network(width, height, params)
             grid[y][x] = '-'
         end
     end
+
     for _ = 1, mineral_veins do
         local vein_x = love.math.random(10, width-10)
         local vein_y = love.math.random(10, height-10)
@@ -90,12 +104,8 @@ function generate_cave_network(width, height, params)
             end
         end
     end
-    local map = {}
-    for y = 1, height do
-        map[y] = table.concat(grid[y])
-    end
-    local success, message = pcall(function()
-        love.filesystem.write("map.txt", table.concat(map, "\n"))
-    end)
-    return success, message
+
+    return grid
 end
+
+return cave

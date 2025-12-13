@@ -12,7 +12,7 @@ function color.create_gradient(colors, steps)
     local gradient = {}
     for i = 1, #colors-1 do
         for t = 0, 1, 1/steps do
-            table.insert(gradient, color_utils.lerp_color(colors[i], colors[i+1], t))
+            table.insert(gradient, color.lerp_color(colors[i], colors[i+1], t))
         end
     end
     return gradient
