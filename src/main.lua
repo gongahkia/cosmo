@@ -90,8 +90,17 @@ function love.load()
         end
     end)
     if not success or #map == 0 then
-        print("Error loading map:", message)
-        love.event.quit()
+        print("No map.txt found, generating default coastline terrain...")
+        -- Generate default terrain (coastline)
+        local defaultWidth = 120
+        local defaultHeight = 80
+        local defaultSeed = os.time()
+        love.math.setRandomSeed(defaultSeed)
+        math.randomseed(defaultSeed)
+        currentSeed = defaultSeed
+        currentGenerator = "coast"
+        map = generators.coast.generate(defaultWidth, defaultHeight)
+        file_utils.write_map(map, "map.txt")
     end
     local mapWidth = #map[1]
     local mapHeight = #map
@@ -172,6 +181,15 @@ function generateTerrain(generatorName, width, height, seed)
     map = generators[generatorName].generate(width, height)
     file_utils.write_map(map, "map.txt")
     love.load()
+end
+
+function takeScreenshot(filename)
+    local screenshot = love.graphics.newScreenshot()
+    local filedata = screenshot:encode("png")
+    love.filesystem.write(filename, filedata)
+    exportMessage = "Screenshot saved: " .. filename
+    exportMessageTimer = 3
+    print("Screenshot saved to: " .. love.filesystem.getSaveDirectory() .. "/" .. filename)
 end
 
 function love.keypressed(key)
@@ -259,5 +277,10 @@ function love.keypressed(key)
         file_utils.export_to_csv(map, filename)
         exportMessage = "Exported to " .. filename
         exportMessageTimer = 3
+
+    -- Screenshot key
+    elseif key == "x" and map then
+        local filename = (currentGenerator or "terrain") .. "_screenshot.png"
+        takeScreenshot(filename)
     end
 end
