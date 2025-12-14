@@ -44,8 +44,8 @@ function apocalypse.generate(width, height, params)
         for dy = -bomb_radius*2, bomb_radius*2 do
             for dx = -bomb_radius*2, bomb_radius*2 do
                 local dist = math.sqrt(dx^2 + dy^2)
-                local nx = math_utils.clamp(bomb.x + dx, 1, width)
-                local ny = math_utils.clamp(bomb.y + dy, 1, height)
+                local nx = math.floor(math_utils.clamp(bomb.x + dx, 1, width))
+                local ny = math.floor(math_utils.clamp(bomb.y + dy, 1, height))
                 if dist < bomb_radius then
                     map[ny][nx] = 'Q'
                 elseif dist < bomb_radius*2 then
@@ -65,8 +65,8 @@ function apocalypse.generate(width, height, params)
             if wx >= 1 and wx <= width and wy >= 1 and wy <= height then
                 for dy = -2, 2 do
                     for dx = -2, 2 do
-                        local nx = math_utils.clamp(wx + dx, 1, width)
-                        local ny = math_utils.clamp(wy + dy, 1, height)
+                        local nx = math.floor(math_utils.clamp(wx + dx, 1, width))
+                        local ny = math.floor(math_utils.clamp(wy + dy, 1, height))
                         radiation_map[ny] = radiation_map[ny] or {}
                         radiation_map[ny][nx] = true
                     end

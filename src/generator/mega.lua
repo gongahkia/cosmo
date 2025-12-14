@@ -18,8 +18,12 @@ function mega.generate(width, height, params)
     end
 
     local function quantum_position(x, y)
-        return (x + math.floor(y/20)) % width,
-               (y + math.floor(x/20)) % height
+        local qx = (math.floor(x) + math.floor(y/20)) % width
+        local qy = (math.floor(y) + math.floor(x/20)) % height
+        -- Ensure 1-indexed (Lua arrays start at 1)
+        qx = qx == 0 and width or qx
+        qy = qy == 0 and height or qy
+        return qx, qy
     end
 
     local function generate_structure(x, y, size, depth)

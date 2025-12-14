@@ -68,8 +68,8 @@ function urban.generate(width, height, params)
                 local rotation = love.math.random(0, 3) * math.pi/2
                 for dy = 0, block_size do
                     for dx = 0, block_size do
-                        local rx = x + math.cos(rotation)*dx - math.sin(rotation)*dy
-                        local ry = y + math.sin(rotation)*dx + math.cos(rotation)*dy
+                        local rx = math.floor(x + math.cos(rotation)*dx - math.sin(rotation)*dy)
+                        local ry = math.floor(y + math.sin(rotation)*dx + math.cos(rotation)*dy)
                         if rx >= 1 and rx <= width and ry >= 1 and ry <= height then
                             map[ry][rx] = 'J'
                         end

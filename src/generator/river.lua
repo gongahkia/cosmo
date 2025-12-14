@@ -80,8 +80,8 @@ function river.generate(width, height, params)
             local best = {elevation = math.huge}
             for dx = -1, 1 do
                 for dy = 1, -1, -1 do
-                    local nx = math_utils.clamp(current.x + dx + meander_offset, 1, width)
-                    local ny = math_utils.clamp(current.y + dy, 1, height)
+                    local nx = math.floor(math_utils.clamp(current.x + dx + meander_offset, 1, width))
+                    local ny = math.floor(math_utils.clamp(current.y + dy, 1, height))
                     if heightmap[ny][nx] < best.elevation then
                         best = {x = nx, y = ny, elevation = heightmap[ny][nx]}
                     end
