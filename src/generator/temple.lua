@@ -68,6 +68,11 @@ function temple.generate(width, height, params)
             local current = table.remove(stack, 1)
             local current_tile = grid[current.y][current.x].possible[1]
 
+            -- Skip if no valid tile (WFC contradiction)
+            if not current_tile or not tiles[current_tile] then
+                goto continue
+            end
+
             for _, dir in ipairs({'north','south','east','west'}) do
                 local nx, ny = current.x, current.y
                 if dir == 'north' then ny = ny - 1
@@ -88,14 +93,20 @@ function temple.generate(width, height, params)
                                 end
                             end
                         end
-                        if #valid ~= #neighbor.possible then
+                        if #valid > 0 and #valid ~= #neighbor.possible then
                             neighbor.possible = valid
                             neighbor.entropy = #valid
                             table.insert(stack, {x=nx, y=ny})
+                        elseif #valid == 0 then
+                            -- WFC contradiction - reset to default
+                            neighbor.possible = {'S'}
+                            neighbor.entropy = 1
                         end
                     end
                 end
             end
+
+            ::continue::
         end
     end
 
