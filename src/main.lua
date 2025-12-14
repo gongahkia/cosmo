@@ -178,7 +178,18 @@ function generateTerrain(generatorName, width, height, seed)
     currentSeed = seed
     currentGenerator = generatorName
 
-    map = generators[generatorName].generate(width, height)
+    local success, result = pcall(function()
+        return generators[generatorName].generate(width, height)
+    end)
+
+    if not success then
+        print("Error generating " .. generatorName .. " terrain: " .. tostring(result))
+        exportMessage = "Error: " .. generatorName .. " failed"
+        exportMessageTimer = 5
+        return
+    end
+
+    map = result
     file_utils.write_map(map, "map.txt")
     love.load()
 end
