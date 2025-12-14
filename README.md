@@ -3,24 +3,66 @@
 
 # `Cosmo` 🌌
 
-2D *(top-down)* Terrain Generation, with an emphasis on [investigated and empirically-backed](#research) landscape [evolution](https://en.wikipedia.org/wiki/Evolutionary_landscape).
+A 2D *(top-down)* Terrain Generation System emphasizing an [investigated and empirically-backed](#research) landscape [evolution](https://en.wikipedia.org/wiki/Evolutionary_landscape) approach.
 
 Rendered with [Löve2d](https://love2d.org/)'s graphics library.
 
-Implemented in [4 hours and 8 minutes](https://github.com/gongahkia/cosmo/commit/f8a10714c84885cf78526c57c324dbc09416e67e).
+## Screenshots
 
-## Usage
+### Coastline, Volcanic Archipelago, Desert Dunes
 
-First run the below.
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/1.png" width="32%">
+  <img src="./asset/reference/2.png" width="32%">
+  <img src="./asset/reference/3.png" width="32%">
+</div>
 
-```console
-$ git clone https://github.com/gongahkia/cosmo
-$ cd cosmo
-$ make
-$ love src
-```
+### Glacial Valley, Urban Grid, Swamp
 
-Then press the corresponding [key](#keypress) to [generate](#architecture) and visualize [terrain](#screenshots).
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/4.png" width="32%">
+  <img src="./asset/reference/5.png" width="32%">
+  <img src="./asset/reference/6.png" width="32%">
+</div>
+
+### Cave Network, River Basin, Floating Islands
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/7.png" width="32%">
+  <img src="./asset/reference/8.png" width="32%">
+  <img src="./asset/reference/9.png" width="32%">
+</div>
+
+### Forest Temple, Tundra Biome, Coral Reef
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/10.png" width="32%">
+  <img src="./asset/reference/11.png" width="32%">
+  <img src="./asset/reference/12.png" width="32%">
+</div>
+
+### Megastructure, Farmland, Apocalyptic Wasteland
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/13.png" width="32%">
+  <img src="./asset/reference/14.png" width="32%">
+  <img src="./asset/reference/15.png" width="32%">
+</div>
+
+### Mountain Range, Dense Forest, Canyon System
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./asset/reference/16.png" width="32%">
+  <img src="./asset/reference/17.png" width="32%">
+  <img src="./asset/reference/18.png" width="32%">
+</div>
+
+### Archipelago, Badlands
+
+<div style="display: flex; justify-content: center;">
+  <img src="./asset/reference/19.png" width="32%">
+  <img src="./asset/reference/20.png" width="32%">
+</div>
 
 ## Architecture
 
@@ -70,47 +112,18 @@ sequenceDiagram
     Note over Generator,MapFile: Process repeats with new terrain type
 ```
 
-## Screenshots
+## Usage
 
-### Coastline, Volcanic Archipelago, Desert Dunes
+First run the below.
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="./asset/reference/1.png" width="32%">
-  <img src="./asset/reference/2.png" width="32%">
-  <img src="./asset/reference/3.png" width="32%">
-</div>
+```console
+$ git clone https://github.com/gongahkia/cosmo
+$ cd cosmo
+$ make
+$ love src
+```
 
-### Glacial Valley, Urban Grid, Swamp
-
-<div style="display: flex; justify-content: space-between;">
-  <img src="./asset/reference/4.png" width="32%">
-  <img src="./asset/reference/5.png" width="32%">
-  <img src="./asset/reference/6.png" width="32%">
-</div>
-
-### Cave Network, River Basin, Floating Islands
-
-<div style="display: flex; justify-content: space-between;">
-  <img src="./asset/reference/7.png" width="32%">
-  <img src="./asset/reference/8.png" width="32%">
-  <img src="./asset/reference/9.png" width="32%">
-</div>
-
-### Forest Temple, Tundra Biome, Coral Reef
-
-<div style="display: flex; justify-content: space-between;">
-  <img src="./asset/reference/10.png" width="32%">
-  <img src="./asset/reference/11.png" width="32%">
-  <img src="./asset/reference/12.png" width="32%">
-</div>
-
-### Megastructure, Farmland, Apocalyptic Wasteland
-
-<div style="display: flex; justify-content: space-between;">
-  <img src="./asset/reference/13.png" width="32%">
-  <img src="./asset/reference/14.png" width="32%">
-  <img src="./asset/reference/15.png" width="32%">
-</div>
+Then press the corresponding [key](#keypress) to [generate](#architecture) and visualize [terrain](#screenshots).
 
 ## Keypress
 
@@ -139,27 +152,15 @@ sequenceDiagram
 
 ## Testing
 
-### Running Tests
+`Cosmo`'s testing framework is composed of the following 5 files.
 
-```console
-$ lua test/run_tests.lua
-```
+1. `test/test_framework.lua`: Core testing framework with assertions
+2. `test/test_helpers.lua`: Utility functions for terrain analysis
+3. `test/test_generators.lua`: Comprehensive generator tests
+4. `test/test_helpers_test.lua`: Tests for the testing utilities
+5. `test/run_tests.lua`: Test runner script
 
-### Test Framework Features
-
-- **Generator Validation**: Ensures all generators produce valid terrain maps with correct dimensions
-- **Character Validation**: Verifies only valid terrain characters are used
-- **Terrain Diversity**: Tests that generators produce varied and interesting landscapes
-- **Connectivity Analysis**: Analyzes terrain feature connectivity and distribution
-- **Cross-Generator Consistency**: Ensures all generators follow the same interface standards
-
-### Test Structure
-
-- `test/test_framework.lua` - Core testing framework with assertions
-- `test/test_helpers.lua` - Utility functions for terrain analysis
-- `test/test_generators.lua` - Comprehensive generator tests
-- `test/test_helpers_test.lua` - Tests for the testing utilities
-- `test/run_tests.lua` - Test runner script
+Run all of them with `lua test/run_tests.lua`.
 
 ## Reference
 
